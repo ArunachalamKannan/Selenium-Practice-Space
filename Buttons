@@ -1,0 +1,52 @@
+package selenium.lao.practice;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Buttons {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Arunachalam K\\eclipse-workspace\\myproj\\exefiles\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://letcode.in/buttons");
+		driver.manage().window().maximize();
+		WebElement home = driver.findElement(By.id("home"));
+		home.click();
+		driver.navigate().back();
+		// Thread.sleep(1000);
+		WebElement location = driver.findElement(By.id("position"));
+		Point location2 = location.getLocation();
+		int x = location2.getX();
+		int y = location2.getY();
+		System.out.println("X:" + x + " " + "Y:" + y);
+		WebElement colorButton = driver.findElement(By.id("color"));
+		String cssValue = colorButton.getCssValue("background-color");
+		System.out.println(cssValue);
+		WebElement hw = driver.findElement(By.id("property"));
+		// Rectangle rect = hw.getRect();
+		// int height2 = rect.getHeight();
+		// int width2 = rect.getWidth();
+		Dimension size = hw.getSize();
+		int height = size.getHeight();
+		int width = size.getWidth();
+		System.out.println("H:" + height + " " + "W:" + width);
+		WebElement disabled = driver.findElement(By.id("isDisabled"));
+		boolean enabled = disabled.isEnabled();
+		System.out.println(enabled);
+		Actions actions = new Actions(driver);
+		WebElement clickhold = driver.findElement(
+				By.xpath("/html/body/app-root/app-buttons/section[1]/div/div/div[1]/div/div/div[6]/div/button"));
+		actions.clickAndHold(clickhold).build().perform();
+		Thread.sleep(2000);
+		String text = clickhold.getText();
+		System.out.println(text);
+
+	}
+
+}
