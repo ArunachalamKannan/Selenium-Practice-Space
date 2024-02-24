@@ -1,0 +1,40 @@
+package myproj;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Frame {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Arunachalam K\\eclipse-workspace\\myproj\\exefiles\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://letcode.in/frame");
+		WebElement frame1 = driver.findElement(By.xpath("//iframe[@src='frameUI']"));
+		driver.switchTo().frame(frame1);
+		WebElement element = driver.findElement(By.name("fname"));
+		element.sendKeys("Arunachalam");
+		WebElement element2 = driver.findElement(By.name("lname"));
+		element2.sendKeys("K");
+		WebElement innerFrame = driver.findElement(By.xpath("//iframe[@src='innerFrame']"));
+		driver.switchTo().frame(innerFrame);
+		WebElement element3 = driver.findElement(By.name("email"));
+		element3.sendKeys("email");
+		driver.switchTo().parentFrame();
+		WebElement appendElement2 = driver.findElement(By.name("lname"));
+		appendElement2.sendKeys("annan");
+		//		driver.switchTo().parentFrame();
+		WebElement appendElement1 = driver.findElement(By.name("fname"));
+		appendElement1.sendKeys("Arun");
+
+		driver.switchTo().defaultContent();
+		WebElement element4 = driver.findElement(
+				By.xpath("/html/body/app-root/app-frames/section[1]/div/div/div[2]/app-learning-point/div/footer/a"));
+		element4.click();
+
+	}
+
+}
