@@ -1,0 +1,28 @@
+package myproj;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class DragDrop1 {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Arunachalam K\\eclipse-workspace\\myproj\\exefiles\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://leafground.com/drag.xhtml;jsessionid=node05ci1ewtixw9x8f7cd30kw8f4216012.node0");
+		driver.manage().window().maximize();
+		//		WebElement element = driver.findElement(By.id("form:conpnl_header"));
+		//		Actions actions = new Actions(driver);
+		//		actions.dragAndDropBy(element, 20, 30).build().perform();
+		WebElement from = driver.findElement(By.id("form:drag_content"));
+		WebElement to = driver.findElement(By.id("form:drop_header"));
+		Actions actions = new Actions(driver);
+		//		actions.clickAndHold(from).moveToElement(to).release(to).build().perform();
+		actions.dragAndDrop(from, to).build().perform();
+
+	}
+
+}
