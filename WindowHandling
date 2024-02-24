@@ -1,0 +1,52 @@
+package myproj;
+
+import java.util.ArrayList;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class WindowHandling {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Arunachalam K\\eclipse-workspace\\myproj\\exefiles\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://letcode.in/windows");
+		String windowHandle = driver.getWindowHandle();
+		WebElement homeElement = driver.findElement(By.id("home"));
+		homeElement.click();
+		Set<String> newWindow = driver.getWindowHandles();
+		for (String windows : newWindow) {
+			driver.switchTo().window(windows);
+		}
+		WebElement newElement1 = driver.findElement(
+				By.xpath("/html/body/app-root/app-test-site/section[2]/div/div/div/div[1]/app-menu/div/footer/a"));
+		newElement1.click();
+		//		driver.close();
+		driver.switchTo().window(windowHandle);
+		WebElement homeElement2 = driver.findElement(By.xpath("//*[@id=\'multi\']"));
+		homeElement2.click();
+		ArrayList<String> list = new ArrayList<String>(newWindow);
+		driver.switchTo().window(list.get(0));
+		String title = driver.getTitle();
+		System.out.println(title);
+		driver.switchTo().window(list.get(1));
+		String title2 = driver.getTitle();
+		System.out.println(title2);
+		Set<String> clear = driver.getWindowHandles();
+		int size = clear.size();
+		System.out.println(size);
+		for (String close : clear) {
+			if (!close.equals(windowHandle)) {
+				driver.switchTo().window(close);
+				driver.close();
+			}
+		}
+
+	}
+
+}
