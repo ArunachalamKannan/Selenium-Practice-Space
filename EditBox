@@ -1,0 +1,38 @@
+package myproj;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class EditBox {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\\\Users\\\\Arunachalam K\\\\eclipse-workspace\\\\myproj\\\\exefiles\\\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.google.com/");
+		driver.manage().window().maximize();
+		driver.findElement(By.className("gLFyf")).sendKeys("https://www.leafground.com/input.xhtml", Keys.ENTER);
+		driver.findElement(By.xpath("//*[@id=\"rso\"]/div[1]/div/div/div[1]/div/div/span/a/h3")).click();
+		Thread.sleep(5000);
+		driver.findElement(By.id("j_idt88:name")).sendKeys("Arun");
+		driver.findElement(By.name("j_idt88:j_idt91")).sendKeys(", India.");
+		WebElement Check = driver
+				.findElement(By.xpath("/html/body/div[1]/div[5]/div[2]/div/div[1]/div/form/div[3]/div"));
+		Boolean Enable = Check.isEnabled();
+		System.out.println(Enable);
+		driver.findElement(By.id("j_idt88:j_idt95")).clear();
+		WebElement getAttribute = driver.findElement(By.id("j_idt88:j_idt97"));
+		String value = getAttribute.getAttribute("value");
+		System.out.println(value);
+		String url = driver.getCurrentUrl();
+		System.out.println(url);
+		driver.navigate().back();
+		Thread.sleep(5000);
+		String url1 = driver.getCurrentUrl();
+		System.out.println(url1);
+	}
+
+}
