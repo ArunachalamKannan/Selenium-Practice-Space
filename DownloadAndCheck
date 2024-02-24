@@ -1,0 +1,29 @@
+package myproj;
+
+import java.io.File;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class DownloadAndCheck {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Arunachalam K\\eclipse-workspace\\myproj\\exefiles\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://demo.automationtesting.in/FileDownload.html");
+		// WebElement download = driver.findElement(By.linkText("Download"));
+		// download.click();
+		File filmanager = new File("C:\\Users\\Arunachalam K\\Downloads");
+		File[] listofFiles = filmanager.listFiles(); // files are stored with the format.
+		for (File files : listofFiles) {
+			if (files.getName().equals("samplefile.pdf")) {
+				System.out.println("Your File is Downloaded Bro...");
+				break;
+			}
+		}
+
+	}
+
+}
