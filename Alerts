@@ -1,0 +1,35 @@
+package myproj;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Alerts {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Arunachalam K\\eclipse-workspace\\myproj\\exefiles\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://letcode.in/alert");
+		driver.manage().window().maximize();
+		WebElement simple = driver.findElement(By.id("accept"));
+		simple.click();
+		Alert simplealert = driver.switchTo().alert();
+		System.out.println(simplealert.getText());
+		simplealert.accept();
+		//		alert.dismiss();
+		WebElement confirm = driver.findElement(By.id("confirm"));
+		confirm.click();
+		Alert confirmalert = driver.switchTo().alert();
+		confirmalert.dismiss();
+		WebElement prompt = driver.findElement(By.id("prompt"));
+		prompt.click();
+		Alert promptalert = driver.switchTo().alert();
+		promptalert.sendKeys("Arun");
+		promptalert.accept();
+
+	}
+
+}
