@@ -1,0 +1,34 @@
+package selenium.lao.practice;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Input {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Arunachalam K\\eclipse-workspace\\myproj\\exefiles\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://letcode.in/edit");
+		WebElement fullName = driver.findElement(By.id("fullName"));
+		fullName.sendKeys("Arunachalam K");
+		WebElement append = driver.findElement(By.id("join"));
+		append.sendKeys("Person" + Keys.TAB);
+		WebElement insideText = driver.findElement(By.id("getMe"));
+		insideText.getAttribute("value");
+		WebElement clearText = driver.findElement(By.id("clearMe"));
+		clearText.clear();
+		WebElement isDisabled = driver.findElement(By.id("noEdit"));
+		boolean checking = isDisabled.isEnabled();
+		System.out.println(checking);
+		String readonly = driver.findElement(By.id("dontwrite")).getAttribute("readonly");
+		System.out.println(readonly);
+		Thread.sleep(3000);
+		driver.close();
+
+	}
+
+}
