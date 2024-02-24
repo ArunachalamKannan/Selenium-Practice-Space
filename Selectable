@@ -1,0 +1,50 @@
+package myproj;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Selectable {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Arunachalam K\\eclipse-workspace\\myproj\\exefiles\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://demo.automationtesting.in/Selectable.html");
+		// List<WebElement> total =
+		// driver.findElements(By.xpath("//*[@id=\"Default\"]/ul/li"));
+		// int size = total.size();
+		// System.out.println(size);
+		WebElement total2 = driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div[1]/ul/li[2]/a"));
+		total2.click();
+		List<WebElement> elements = driver.findElements(By.xpath("//div[@id='Serialize']/ul/li/b"));
+		/*
+		 * WebElement first = elements.get(0); first.click();
+		 */
+		// WebElement webElement = total.get(0);
+		// webElement.click();
+		// WebElement webElement2 = total.get(1);
+		// webElement2.click();
+		// WebElement webElement3 = total.get(2);
+		// webElement3.click();
+		Actions actions = new Actions(driver);
+		actions.keyDown(Keys.CONTROL).click(elements.get(0)).click(elements.get(1)).click(elements.get(2)).build()
+				.perform();
+
+		// actions.keyDown(Keys.CONTROL).click(total.get(0)).click(total.get(1)).click(total.get(2)).build().perform();
+
+		// actions.clickAndHold(elements.get(0));
+		// actions.clickAndHold(elements.get(1));
+		// actions.clickAndHold(elements.get(2));
+
+		// .....................CONSISTENCY AND INTEREST😇......................
+
+	}
+
+}
