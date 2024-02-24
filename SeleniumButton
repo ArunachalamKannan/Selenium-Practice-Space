@@ -1,0 +1,49 @@
+package myproj;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class SeleniumButton {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\\\Users\\\\Arunachalam K\\\\eclipse-workspace\\\\myproj\\\\exefiles\\\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.leafground.com/button.xhtml");
+		driver.manage().window().maximize();
+		WebElement click = driver.findElement(By.xpath("//*[@id=\"j_idt88:j_idt90\"]/span"));
+		click.click();
+		String title = driver.getTitle();
+		System.out.println(title);
+		driver.navigate().back();
+		WebElement check = driver.findElement(By.xpath("//*[@id=\"j_idt88\"]/div/div[1]/div[2]"));
+		boolean enabled = check.isEnabled();
+		System.out.println(enabled);
+		WebElement position = driver.findElement(By.xpath("//*[@id=\"j_idt88:j_idt94\"]/span[2]"));
+		Point location = position.getLocation();
+		// 1
+		System.out.println(location);
+		// 2
+		int x = location.getX();
+		int y = location.getY();
+		System.out.println("X value is:" + x + "Y value is:" + y);
+		WebElement button = driver.findElement(By.id("j_idt88:j_idt96"));
+		String cssValue = button.getCssValue("color");
+		String cssValue2 = button.getCssValue("background");
+		System.out.println(cssValue);
+		System.out.println(cssValue2);
+		WebElement size = driver.findElement(By.id("j_idt88:j_idt98"));
+		Dimension size2 = size.getSize();
+		int height = size2.getHeight();
+		int width = size2.getWidth();
+		System.out.println("Height:" + height + "Width:" + width);
+
+		Thread.sleep(3000);
+		driver.quit();
+	}
+
+}
