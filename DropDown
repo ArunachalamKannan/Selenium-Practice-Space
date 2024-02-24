@@ -1,0 +1,31 @@
+package myproj;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class DropDown {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Arunachalam K\\eclipse-workspace\\myproj\\exefiles\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://letcode.in/dropdowns");
+		driver.manage().window().maximize();
+		WebElement dropdown = driver.findElement(By.id("fruits"));
+		Select select = new Select(dropdown);
+		select.selectByIndex(1);
+		WebElement dropdown2 = driver.findElement(By.id("superheros"));
+		Select select2 = new Select(dropdown2);
+		List<WebElement> options = select2.getOptions();
+		System.out.println(options);
+
+		//		driver.navigate().back();
+
+	}
+
+}
